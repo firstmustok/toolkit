@@ -44,7 +44,7 @@
 
 			//click confirm button
 			cfmBtn = this.get('span', 'action-type', 'handleOk');
-			this.clickEvent( cfnBtn );
+			this.clickEvent( cfmBtn );
 			alert("Delete Message Success!");
 		},
 		deleteMessageList : function(f, t){
