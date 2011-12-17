@@ -97,7 +97,7 @@
 		},
 		deleteAll : function(){
 			var max = this.getMaxPageNum();
-			deleteMessageList(1, max);
+			this.deleteMessageList(1, max);
 		}
 	};
 	weibo.init();
