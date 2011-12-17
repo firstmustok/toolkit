@@ -21,11 +21,15 @@
 		},
 		delMsgList : function(){
 			var t = document.getElementsByTagName("div");
+			var delBtn, cfmBtn;
 			for(var i in t){
-				var a=t[i].getAttribute('action-type');
-				if(a!=null && a=='delMessageList')
-					alert(t[i].child);
+				var attr = t[i].getAttribute('action-type');
+				if(attr != null && attr == 'delMessageList'){
+					delBtn = t[i];
+				}
 			}
+			delBtn && delBtn.fireEvent("onclick");//
+			alert("Delete Message Success!");
 		}
 	};
 	weibo.init();
