@@ -1,16 +1,19 @@
 (function (win, doc){
 	var weibo = {
 		init: function(){
-			var div='from<input type="text" value="1" size="2" id="del-from"></input>to<input type="text" value="2" size="2" id="del-to"></input>\
+			var div='<div class="W_miniblog">\
+                     from<input type="text" value="1" size="2" id="del-from"></input>to<input type="text" value="2" size="2" id="del-to"></input>\
                      <a class="W_btn_b" onclick="weibo.delmsg();"><span>OK</span></a>\
-                     <a class="W_btn_b" onclick="weibo.deleteAll();"><span>Delete All</span></a>';
+                     <a class="W_btn_b" onclick="weibo.deleteAll();"><span>Delete All</span></a></div>';
 			var app = doc.createElement('div');
 			with ( app.style ) {
 				position = 'fixed';
-				top = '40px';
+				//top = '40px';
 				right = '20px';
+				width = 150px;
 				zIndex = '9999999';
 			}
+			app.className = 'global_header';
 			app.innerHTML = div;
 			try{
 				document.body.appendChild(app);
