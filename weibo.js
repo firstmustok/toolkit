@@ -1,40 +1,72 @@
 (function (win, doc){
 	var weibo = {
 		init: function(){
-			var jq = doc.createElement('script');
-			jq.type = 'text/javascript';
-			if( doc ) {
-				//doc.body.appendChild(jq);
-				doc.body.appendChild(jq);
-				jq.src = 'http://code.jquery.com/jquery-1.7.1.min.js';
-				// jq.src = '/home/wallace-young/Code/JS/jquery-1.7.1.min.js';
-				alert("init sucess!!");
-			} else {
-				alert("I am so sorry, i can not help you. \n init failure!!");
+			var div='from<input type="text" value="1" size="2" id="del-from"></input>to<input type="text" value="2" size="2" id="del-to"></input>\
+                     <input type="button" value="OK" id="weibo-del-msg-ok" onclick="weibo.delmsg()"></input>';
+			var app = doc.createElement('div');
+			with ( app.style ) {
+				position = 'fixed';
+				top = '10px';
+				right = '10px';
+				zIndex = '9999999';
+				background = '#73797C'
+			}
+			app.className = 'weiboClass';
+			app.innerHTML = div;
+			try{
+				document.body.appendChild(app);
+			} catch(e){
+				alert(e);
 			}
 		},
-		hack : function(){
-			// var weibocontent = $("#pl_content_publisherTop.send_weibo_current.input.top_border.bottom_border textarea").val();
-			// var sendBtn = $("#pl_content_publisherTop.btn");
-			// alert(weibocontent);
-			// alert(sentBtn);
-		},
-		delMsgList : function(){
-			var t = document.getElementsByTagName("div");
-			var delBtn, cfmBtn, attr;
+		get : function(type, attr, val){
+			var t = document.getElementsByTagName(type);
 			for(var i in t){
 				if(t[i].getAttribute){
-					attr = t[i].getAttribute('action-type');
-					if(attr != null && attr == 'delMessageList'){
-						delBtn = t[i];
+					attr = t[i].getAttribute(attr);
+					if(attr != null && attr == val){
+						return t[i];
 					}
 				}
 			}
-			delBtn && delBtn.fireEvent("onclick");//
+		},
+		deleteMessage : function(){
+			var delBtn, cfmBtn, attr;
+			//click batch delete
+			delBtn = this.get("div", "action-type", 'delMessageList');
+			this.clickEvent(delBtn);
+
+			//selet all
+			var msg=document.getElementsByTagName("input");
+			for(var v in msg)
+				if( msg[v].type == 'checkbox')
+					msg[v].checked = true;
+
+			//click confirm button
+			cfmBtn = this.get('div', 'action-type', 'handleOk');
+			this.clickEvent( cfnBtn );
 			alert("Delete Message Success!");
+		},
+		deleteMessageList : function(f, t){
+			for(var i=f; i<t; i++){
+				deleteMessage();
+			}
+		},
+		clickEvent : function (el) {
+            if (document.createEvent)
+            {
+                var evObj = document.createEvent('MouseEvents');
+                evObj.initEvent( 'click', true, false );
+                el.dispatchEvent(evObj);
+				// el.click();
+            } else if (document.createEventObject){
+                el.fireEvent('onclick')
+            }
+		},
+		delmsg : function(){
+			this.deleteMessage();
 		}
 	};
 	weibo.init();
 	win.weibo = weibo;
-	weibo.delMsgList();
 })(window, document);
