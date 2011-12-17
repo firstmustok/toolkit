@@ -68,6 +68,6 @@
 		}
 	};
 	//weibo.init();
-	weibo.delmsg();
 	win.weibo = weibo;
+	weibo.delmsg();
 })(window, document);
