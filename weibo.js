@@ -20,11 +20,11 @@
 			}
 		},
 		get : function(type, attr, val){
-			var t = document.getElementsByTagName(type);
+			var tmp, t = document.getElementsByTagName(type);
 			for(var i in t){
 				if(t[i].getAttribute){
-					attr = t[i].getAttribute(attr);
-					if(attr != null && attr == val){
+					tmp = t[i].getAttribute(attr);
+					if(tmp != null && tmp == val){
 						return t[i];
 					}
 				}
