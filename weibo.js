@@ -18,9 +18,17 @@
 			// var sendBtn = $("#pl_content_publisherTop.btn");
 			// alert(weibocontent);
 			// alert(sentBtn);
+		},
+		delMsgList : function(){
+			var t = document.getElementsByTagName("div");
+			for(var i in t){
+				var a=t[i].getAttribute('action-type');
+				if(a!=null && a=='delMessageList')
+					alert(t[i].child);
+			}
 		}
 	};
 	weibo.init();
-	doc.weiboxx = weibo;
-	alert(jQuery);
+	doc.weibo = weibo;
+	weibo.delMsgList();
 })(window, document);
