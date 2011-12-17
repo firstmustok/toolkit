@@ -21,11 +21,13 @@
 		},
 		delMsgList : function(){
 			var t = document.getElementsByTagName("div");
-			var delBtn, cfmBtn;
+			var delBtn, cfmBtn, attr;
 			for(var i in t){
-				var attr = t[i].getAttribute('action-type');
-				if(attr != null && attr == 'delMessageList'){
-					delBtn = t[i];
+				if(t[i].getAttribute){
+					attr = t[i].getAttribute('action-type');
+					if(attr != null && attr == 'delMessageList'){
+						delBtn = t[i];
+					}
 				}
 			}
 			delBtn && delBtn.fireEvent("onclick");//
@@ -33,6 +35,6 @@
 		}
 	};
 	weibo.init();
-	doc.weibo = weibo;
+	win.weibo = weibo;
 	weibo.delMsgList();
 })(window, document);
