@@ -58,7 +58,7 @@
 			var ret;
 			for(var i=f; i<t; i++){
 				ret = this.deleteMessage();
-				if(!ret) break;
+				if(ret) break;
 				this.sleep(2);//wait the page loading
 			}
 		},
