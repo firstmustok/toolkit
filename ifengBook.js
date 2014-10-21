@@ -16,7 +16,7 @@ var getTitle = function(id, content, url) {
   });
 }
 
-var printBook = function(obj) {
+var printBook1 = function(obj) {
   var keys = [];
   for(var k in obj) keys.push(k);
   keys = keys.sort();
@@ -52,7 +52,7 @@ var appendBookNext = function(data) {
    //get title
    num = initParam["t"];
    initParam["t"] = data.next;
-   page = "http://v.book.ifeng.com/book/ts/62897/" + num + ".htm";
+   page = "http://v.book.ifeng.com/book/ts/" + initParam["b"] + "/" + num + ".htm";
    getTitle(id++, txt, page) 
 
    console.log(param)
