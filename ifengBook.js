@@ -3,9 +3,9 @@ var chapters = {}
 
 var id = 0;
 
-var initParam = {"c":7342116, "b":62897, "t":7342116};
 var bookurl = "http://v.book.ifeng.com/remc.htm";
 
+var initParam = {"c":"", "b":"", "t":""};
 var appendBook = function(txt) {bookText += txt;}
 
 var getTitle = function(id, content, url) {
@@ -39,6 +39,7 @@ var printBook = function(obj) {
   }
 
   bookText = book; 
+  $("body").text("")
   document.write(bookText)
 }
 
@@ -64,4 +65,14 @@ var appendBookNext = function(data) {
    }
 }
 
-$.post(bookurl, initParam, appendBookNext)
+var url = window.location.toString().split("/")
+if(url.length == 1){
+  console.log("get Url error: " + url)
+} else {
+  var bookId = url[url.length-2]
+  var firstPage = url[url.length-1].split(".")[0]
+  initParam = {"c":firstPage, "b":bookId, "t":firstPage};
+
+  $.post(bookurl, initParam, appendBookNext)
+}
+
